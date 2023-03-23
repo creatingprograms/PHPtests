@@ -5,20 +5,32 @@ require_once('Cloud.php');
 require_once('DB.php');
 require_once('File.php');
 require_once('Redis.php');
+/**
+ * Execution class depending on the context
+ */
 final class Context
 {
-    private $namingStrategy;
-    function __construct(GetSecretKeyInterface $strategy)
+     /**
+     * @var object
+     */
+    private object $namingStrategy;
+    /**
+     * @param SetSecretKeyInterface $strategy
+     */
+    function __construct(SetSecretKeyInterface $strategy)
     {
         $this->namingStrategy = $strategy;
     }
-    final function execute()
+    /**
+     * @return void
+     */
+    final function execute(): void
     {
-        $result = $this->namingStrategy->getSecretKey();
+        $result = $this->namingStrategy->setSecretKey();
         echo $result;
     }
 }
-$parameter = 2; // for example
+$parameter = 4; // for example
 switch ($parameter) {
     case 1:
         $context = new Context(new Cloud());

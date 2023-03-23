@@ -1,9 +1,15 @@
 <?php
 declare(strict_types=1);
-require_once('GetSecretKeyInterface.php');
-final class Redis implements GetSecretKeyInterface
+require_once('SetSecretKeyInterface.php');
+/**
+ * Class for storing the key in a redis
+ */
+final class Redis implements SetSecretKeyInterface
 {
-    final public function getSecretKey(): string
+ /**
+  * @return string
+  */
+    final public function setSecretKey(): string
     {
         return "Storing the key in a redis";
     }
